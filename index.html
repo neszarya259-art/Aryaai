@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AryaAI - Website AI Paling Canggih</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        nav {
+            background: rgba(10, 25, 47, 0.95);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #00d4ff, #0099ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #00d4ff;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 153, 255, 0.1));
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #00d4ff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #00d4ff;
+            margin-bottom: 2rem;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            padding: 0.8rem 1.5rem;
+            background: rgba(0, 212, 255, 0.1);
+            border: 2px solid #00d4ff;
+            color: #00d4ff;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: 0.3s;
+            font-weight: 600;
+        }
+
+        .tab-btn:hover,
+        .tab-btn.active {
+            background: #00d4ff;
+            color: #0a1a2f;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        /* Content Sections */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Card */
+        .card {
+            background: rgba(15, 52, 96, 0.8);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            border-color: #00d4ff;
+            box-shadow: 0 8px 32px rgba(0, 212, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        /* Form */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #00d4ff;
+            font-weight: 600;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 5px;
+            color: #e0e0e0;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #00d4ff;
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+            background: rgba(0, 212, 255, 0.05);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Button */
+        .btn {
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, #00d4ff, #0099ff);
+            border: none;
+            color: #0a1a2f;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: 0.3s;
+            width: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 212, 255, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        /* Response Box */
+        .response-box {
+            background: rgba(0, 255, 136, 0.05);
+            border-left: 4px solid #00ff88;
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin-top: 1.5rem;
+            min-height: 100px;
+            display: none;
+        }
+
+        .response-box.show {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .response-box h3 {
+            color: #00ff88;
+            margin-bottom: 1rem;
+        }
+
+        .response-box p {
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        /* Grid */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Loading */
+        .loading {
+            display: none;
+            text-align: center;
+            color: #00d4ff;
+        }
+
+        .spinner {
+            border: 3px solid rgba(0, 212, 255, 0.2);
+            border-top: 3px solid #00d4ff;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 1rem auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 25, 47, 0.95);
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(0, 212, 255, 0.1);
+            margin-top: 3rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: #00d4ff;
+            font-size: 1.5rem;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .tabs {
+                gap: 0.5rem;
+            }
+
+            .tab-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">
+            <i class="fas fa-brain"></i> AryaAI
+        </div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">Tentang</a></li>
+            <li><a href="#contact">Kontak</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header -->
+    <header id="home">
+        <h1><i class="fas fa-sparkles"></i> AryaAI</h1>
+        <p class="subtitle">Website AI Paling Canggih di Indonesia</p>
+        <p>Teknologi AI terdepan untuk masa depan digital Anda</p>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="showTab('text')">
+                <i class="fas fa-pen-fancy"></i> Text Generator
+            </button>
+            <button class="tab-btn" onclick="showTab('chat')">
+                <i class="fas fa-comments"></i> Chat AI
+            </button>
+            <button class="tab-btn" onclick="showTab('image')">
+                <i class="fas fa-image"></i> Image Generator
+            </button>
+            <button class="tab-btn" onclick="showTab('analyze')">
+                <i class="fas fa-chart-bar"></i> Analyze Text
+            </button>
+        </div>
+
+        <!-- Text Generator -->
+        <div id="text" class="tab-content active">
+            <div class="card">
+                <h2><i class="fas fa-pen-fancy"></i> Text Generator</h2>
+                <p style="margin-bottom: 1.5rem; color: #00d4ff;">Hasilkan teks berkualitas tinggi dengan AI</p>
+                
+                <div class="form-group">
+                    <label for="textPrompt">Masukkan Prompt:</label>
+                    <textarea id="textPrompt" placeholder="Contoh: Tuliskan cerita tentang petualangan di bulan..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="textModel">Model:</label>
+                    <select id="textModel">
+                        <option>gpt-3.5-turbo</option>
+                        <option>gpt-4</option>
+                    </select>
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="textTemp">Temperature:</label>
+                        <input type="range" id="textTemp" min="0" max="1" step="0.1" value="0.7">
+                        <small id="tempValue">0.7</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="textTokens">Max Tokens:</label>
+                        <input type="number" id="textTokens" value="1000" min="100" max="4000">
+                    </div>
+                </div>
+
+                <button class="btn" onclick="generateText()"><i class="fas fa-rocket"></i> Generate</button>
+
+                <div class="loading" id="textLoading">
+                    <div class="spinner"></div>
+                    <p>Sedang memproses...</p>
+                </div>
+
+                <div class="response-box" id="textResponse">
+                    <h3><i class="fas fa-check-circle"></i> Hasil:</h3>
+                    <p id="textResponseText"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat AI -->
+        <div id="chat" class="tab-content">
+            <div class="card">
+                <h2><i class="fas fa-comments"></i> Chat AI</h2>
+                <p style="margin-bottom: 1.5rem; color: #00d4ff;">Berbincang dengan AI secara interaktif</p>
+
+                <div style="background: rgba(0, 0, 0, 0.2); padding: 1.5rem; border-radius: 5px; min-height: 300px; margin-bottom: 1.5rem; max-height: 400px; overflow-y: auto;" id="chatBox">
+                    <p style="text-align: center; color: #00d4ff;">Mulai percakapan Anda...</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="chatInput">Pesan Anda:</label>
+                    <textarea id="chatInput" placeholder="Ketik pesan Anda..."></textarea>
+                </div>
+
+                <button class="btn" onclick="sendMessage()"><i class="fas fa-paper-plane"></i> Kirim</button>
+
+                <div class="loading" id="chatLoading">
+                    <div class="spinner"></div>
+                    <p>AI sedang menjawab...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Image Generator -->
+        <div id="image" class="tab-content">
+            <div class="card">
+                <h2><i class="fas fa-image"></i> Image Generator</h2>
+                <p style="margin-bottom: 1.5rem; color: #00d4ff;">Buat gambar dengan AI DALL-E</p>
+
+                <div class="form-group">
+                    <label for="imagePrompt">Deskripsi Gambar:</label>
+                    <textarea id="imagePrompt" placeholder="Contoh: Lukisan digital futuristik dengan warna biru dan ungu..."></textarea>
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="imageSize">Ukuran:</label>
+                        <select id="imageSize">
+                            <option>256x256</option>
+                            <option>512x512</option>
+                            <option selected>1024x1024</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="imageCount">Jumlah Gambar:</label>
+                        <input type="number" id="imageCount" value="1" min="1" max="4">
+                    </div>
+                </div>
+
+                <button class="btn" onclick="generateImage()"><i class="fas fa-magic"></i> Generate</button>
+
+                <div class="loading" id="imageLoading">
+                    <div class="spinner"></div>
+                    <p>Membuat gambar...</p>
+                </div>
+
+                <div class="response-box" id="imageResponse">
+                    <h3><i class="fas fa-check-circle"></i> Hasil Gambar:</h3>
+                    <div id="imageResponseDiv"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analyze Text -->
+        <div id="analyze" class="tab-content">
+            <div class="card">
+                <h2><i class="fas fa-chart-bar"></i> Analyze Text</h2>
+                <p style="margin-bottom: 1.5rem; color: #00d4ff;">Analisis teks dengan AI advanced</p>
+
+                <div class="form-group">
+                    <label for="analyzeInput">Teks untuk Dianalisis:</label>
+                    <textarea id="analyzeInput" placeholder="Masukkan teks yang ingin Anda analisis..."></textarea>
+                </div>
+
+                <button class="btn" onclick="analyzeText()"><i class="fas fa-magnifying-glass"></i> Analisis</button>
+
+                <div class="loading" id="analyzeLoading">
+                    <div class="spinner"></div>
+                    <p>Menganalisis...</p>
+                </div>
+
+                <div class="response-box" id="analyzeResponse">
+                    <h3><i class="fas fa-check-circle"></i> Hasil Analisis:</h3>
+                    <p id="analyzeResponseText"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <h3>AryaAI © 2024</h3>
+        <div class="social-links">
+            <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <p>Website AI Paling Canggih di Indonesia | Powered by Advanced AI Technology</p>
+    </footer>
+
+    <script>
+        // Store chat messages
+        let chatMessages = [];
+
+        // Tab switching
+        function showTab(tabName) {
+            // Hide all tabs
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Update temperature display
+        document.getElementById('textTemp').addEventListener('input', function() {
+            document.getElementById('tempValue').textContent = this.value;
+        });
+
+        // Generate Text
+        async function generateText() {
+            const prompt = document.getElementById('textPrompt').value;
+            if (!prompt) {
+                alert('Silakan masukkan prompt!');
+                return;
+            }
+
+            const model = document.getElementById('textModel').value;
+            const temperature = document.getElementById('textTemp').value;
+            const maxTokens = document.getElementById('textTokens').value;
+
+            showLoading('textLoading');
+
+            try {
+                const response = await fetch('http://localhost:8000/api/ai/text', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        prompt: prompt,
+                        model: model,
+                        temperature: parseFloat(temperature),
+                        max_tokens: parseInt(maxTokens)
+                    })
+                });
+
+                const data = await response.json();
+                hideLoading('textLoading');
+
+                if (data.status === 'success') {
+                    showResponse('textResponse', data.response);
+                    document.getElementById('textResponseText').textContent = data.response;
+                } else {
+                    showResponse('textResponse', 'Terjadi kesalahan: ' + data.detail);
+                }
+            } catch (error) {
+                hideLoading('textLoading');
+                showResponse('textResponse', 'Error: ' + error.message);
+            }
+        }
+
+        // Send Chat Message
+        async function sendMessage() {
+            const message = document.getElementById('chatInput').value;
+            if (!message) return;
+
+            // Add user message to chat
+            chatMessages.push({ role: 'user', content: message });
+            updateChatDisplay();
+            document.getElementById('chatInput').value = '';
+
+            showLoading('chatLoading');
+
+            try {
+                const response = await fetch('http://localhost:8000/api/ai/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ messages: chatMessages })
+                });
+
+                const data = await response.json();
+                hideLoading('chatLoading');
+
+                if (data.status === 'success') {
+                    chatMessages.push({ role: 'assistant', content: data.response });
+                    updateChatDisplay();
+                } else {
+                    alert('Error: ' + data.detail);
+                }
+            } catch (error) {
+                hideLoading('chatLoading');
+                alert('Error: ' + error.message);
+            }
+        }
+
+        // Update Chat Display
+        function updateChatDisplay() {
+            const chatBox = document.getElementById('chatBox');
+            chatBox.innerHTML = chatMessages.map(msg => `
+                <div style="margin-bottom: 1rem; text-align: ${msg.role === 'user' ? 'right' : 'left'};">
+                    <div style="display: inline-block; max-width: 70%; padding: 0.8rem; border-radius: 10px; background: ${msg.role === 'user' ? 'rgba(0, 212, 255, 0.2)' : 'rgba(0, 255, 136, 0.2)'}; color: ${msg.role === 'user' ? '#00d4ff' : '#00ff88'};">
+                        ${msg.content}
+                    </div>
+                </div>
+            `).join('');
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // Generate Image
+        async function generateImage() {
+            const prompt = document.getElementById('imagePrompt').value;
+            if (!prompt) {
+                alert('Silakan masukkan deskripsi gambar!');
+                return;
+            }
+
+            const size = document.getElementById('imageSize').value;
+            const count = document.getElementById('imageCount').value;
+
+            showLoading('imageLoading');
+
+            try {
+                const response = await fetch('http://localhost:8000/api/ai/image', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        prompt: prompt,
+                        size: size,
+                        n: parseInt(count)
+                    })
+                });
+
+                const data = await response.json();
+                hideLoading('imageLoading');
+
+                if (data.status === 'success') {
+                    const imageDiv = document.getElementById('imageResponseDiv');
+                    imageDiv.innerHTML = data.images.map(img => `
+                        <div style="margin: 1rem 0;">
+                            <img src="${img.url}" style="max-width: 100%; border-radius: 10px; border: 1px solid #00d4ff;">
+                        </div>
+                    `).join('');
+                    showResponse('imageResponse', '');
+                } else {
+                    showResponse('imageResponse', 'Error: ' + data.detail);
+                }
+            } catch (error) {
+                hideLoading('imageLoading');
+                showResponse('imageResponse', 'Error: ' + error.message);
+            }
+        }
+
+        // Analyze Text
+        async function analyzeText() {
+            const text = document.getElementById('analyzeInput').value;
+            if (!text) {
+                alert('Silakan masukkan teks!');
+                return;
+            }
+
+            showLoading('analyzeLoading');
+
+            try {
+                const response = await fetch(`http://localhost:8000/api/ai/analysis?text=${encodeURIComponent(text)}`, {
+                    method: 'POST'
+                });
+
+                const data = await response.json();
+                hideLoading('analyzeLoading');
+
+                if (data.status === 'success') {
+                    document.getElementById('analyzeResponseText').textContent = JSON.stringify(data.analysis, null, 2);
+                    showResponse('analyzeResponse', '');
+                } else {
+                    showResponse('analyzeResponse', 'Error: ' + data.detail);
+                }
+            } catch (error) {
+                hideLoading('analyzeLoading');
+                showResponse('analyzeResponse', 'Error: ' + error.message);
+            }
+        }
+
+        // Helper Functions
+        function showLoading(id) {
+            document.getElementById(id).style.display = 'block';
+        }
+
+        function hideLoading(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+
+        function showResponse(id, message) {
+            const element = document.getElementById(id);
+            element.classList.add('show');
+            if (message) {
+                const textElement = element.querySelector('p');
+                if (textElement) textElement.textContent = message;
+            }
+        }
+    </script>
+</body>
+</html>
